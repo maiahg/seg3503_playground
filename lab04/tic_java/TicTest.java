@@ -48,4 +48,12 @@ class TicTest {
 
 		assertEquals("X", game.board[0][0]);
 	}
+
+	@Test
+	void newBoardShouldHaveThreeRowsAndThreeColumns() {
+		Tic game = new Tic(3, 3);
+	
+		assertEquals(3, game.getRows());
+		assertEquals(3, game.getCols());
+	}
 }
