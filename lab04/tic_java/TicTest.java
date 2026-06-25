@@ -9,7 +9,7 @@ class TicTest {
 	void twoNewBoardsWithSameSizeShouldBeEqual() {
 		Tic board = new Tic(3, 3);
 		Tic board2 = new Tic(3, 3);
-	
+
 		assertEquals(board, board2);
 	}
 }

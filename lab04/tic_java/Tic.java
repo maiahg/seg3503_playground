@@ -5,15 +5,43 @@ public class Tic {
 	int rows;
 	int cols;
 	String turn;
+
 	public Tic(int row, int col) {
 		board = new String[row][col];
 		rows = row;
 		cols = col;
 		turn = "X";
-		for(int i = 0; i<row; i++) {
-			for(int j = 0; j<col; j++) {
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
 				board[i][j] = "_";
 			}
 		}
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Tic)) {
+			return false;
+		}
+
+		Tic other = (Tic) obj;
+
+		if (rows != other.rows || cols != other.cols || !turn.equals(other.turn)) {
+			return false;
+		}
+
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				if (!board[i][j].equals(other.board[i][j])) {
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 }
