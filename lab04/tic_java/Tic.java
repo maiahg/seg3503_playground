@@ -47,5 +47,11 @@ public class Tic {
 
 	public void play(int row, int col) {
 		board[row][col] = turn;
+
+		if (turn.equals("X")) {
+			turn = "O";
+		} else {
+			turn = "X";
+		}
 	}
 }
