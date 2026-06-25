@@ -44,4 +44,8 @@ public class Tic {
 
 		return true;
 	}
+
+	public void play(int row, int col) {
+		board[row][col] = turn;
+	}
 }
