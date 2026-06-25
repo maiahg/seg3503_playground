@@ -46,8 +46,15 @@ public class Tic {
 	}
 
 	public void play(int row, int col) {
-		board[row][col] = turn;
+		if (!board[row][col].equals("_")) {
+			return;
+		}
 
+		board[row][col] = turn;
+		switchTurn();
+	}
+
+	private void switchTurn() {
 		if (turn.equals("X")) {
 			turn = "O";
 		} else {
