@@ -38,4 +38,14 @@ class TicTest {
 
 		assertEquals("O", game.turn);
 	}
+
+	@Test
+	void playingOnUsedCellShouldNotOverwriteIt() {
+		Tic game = new Tic(3, 3);
+
+		game.play(0, 0);
+		game.play(0, 0);
+
+		assertEquals("X", game.board[0][0]);
+	}
 }
