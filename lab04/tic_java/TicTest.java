@@ -29,4 +29,13 @@ class TicTest {
 		assertEquals("_", game.board[2][1]);
 		assertEquals("_", game.board[2][2]);
 	}
+
+	@Test
+	void firstMoveShouldChangeTurnToO() {
+		Tic game = new Tic(3, 3);
+
+		game.play(0, 0);
+
+		assertEquals("O", game.turn);
+	}
 }
