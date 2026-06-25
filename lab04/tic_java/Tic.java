@@ -18,6 +18,14 @@ public class Tic {
 		}
 	}
 
+	public int getRows() {
+		return rows;
+	}
+	
+	public int getCols() {
+		return cols;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
