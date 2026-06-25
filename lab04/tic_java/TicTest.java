@@ -14,11 +14,19 @@ class TicTest {
 	}
 
 	@Test
-	void playingFirstMoveShouldPutXOnBoard() {
-		Tic board = new Tic(3, 3);
+	void firstMoveShouldOnlyPlaceXInSelectedCell() {
+		Tic game = new Tic(3, 3);
 
-		board.play(0, 0);
+		game.play(0, 0);
 
-		assertEquals("X", board.board[0][0]);
+		assertEquals("X", game.board[0][0]);
+		assertEquals("_", game.board[0][1]);
+		assertEquals("_", game.board[0][2]);
+		assertEquals("_", game.board[1][0]);
+		assertEquals("_", game.board[1][1]);
+		assertEquals("_", game.board[1][2]);
+		assertEquals("_", game.board[2][0]);
+		assertEquals("_", game.board[2][1]);
+		assertEquals("_", game.board[2][2]);
 	}
 }
