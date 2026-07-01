@@ -12,10 +12,10 @@ defmodule GradesWeb.PageLive do
   @impl true
   def handle_event("calculate", fields, socket) do
     grades = %{
-      homework: lookup(fields, "h", socket.assigns[:num_homeworks]),
-      labs: lookup(fields, "l", socket.assigns[:num_labs]),
-      midterm: fields["midterm"],
-      final: fields["final"]
+      homework: lookup(fields, "h", socket.assigns[:num_homeworks], &parse_mark/1),
+      labs: lookup(fields, "l", socket.assigns[:num_labs], &parse_mark/1),
+      midterm: parse_mark(fields["midterm"]),
+      final: parse_mark(fields["final"])
     }
 
     socket
@@ -38,8 +38,18 @@ defmodule GradesWeb.PageLive do
     |> assign(:numeric_grade, "--")
   end
 
-  defp lookup(fields, prefix, num) do
-    Enum.reduce(num..1, [], fn n, acc -> [fields["#{prefix}#{n}"] | acc] end)
+  defp lookup(fields, prefix, num, transform) do
+    Enum.map(1..num, fn n -> transform.(fields["#{prefix}#{n}"]) end)
+  end
+
+  defp parse_mark(nil), do: 0
+
+  defp parse_mark(mark) do
+    case mark |> String.trim() |> Float.parse() do
+      {number, ""} when number > 1 -> number / 100
+      {number, ""} -> number
+      _ -> 0
+    end
   end
 
   defp my_reply(socket, ok), do: {ok, socket}
